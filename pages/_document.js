@@ -7,6 +7,7 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+        <title>Unplash photos</title>
       </body>
     </Html>
   )
