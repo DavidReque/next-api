@@ -1,13 +1,12 @@
+"use client"
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Poke() {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [photos, setPhotos] = useState([]);
   const [page, setPage] = useState(1);
-
-  function handleClick() {
-    setPage(page + 1);
-  }
+  const router = useRouter();
 
   useEffect(() => {
     async function getPoke() {
@@ -29,7 +28,13 @@ export default function Poke() {
     <div>
       <div className="flex flex-wrap -mx-2">
         {photos.map((photo) => (
-          <div className="w-full sm:w-1/2 md:w-1/3 xl:w-1/4 p-2" key={photo.id}>
+          <div
+            onClick={() => {
+              router.push(`/photos/${photo.id}`);
+            }}
+            className="w-full sm:w-1/2 md:w-1/3 xl:w-1/4 p-2"
+            key={photo.id}
+          >
             <img
               className="w-full h-64 object-cover hover:opacity-75"
               src={photo.urls.small_s3}
@@ -50,7 +55,7 @@ export default function Poke() {
         )}
         <button
           className="font-normal p-3 bg-white w-24 rounded-xl text-slate-950 hover:bg-black hover:text-white hover:border"
-          onClick={handleClick}
+          onClick={() => setPage(page + 1)}
         >
           Next page
         </button>

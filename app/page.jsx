@@ -1,6 +1,7 @@
 "use client"
 import Poke from '@/components/Poke'
 import { Inter } from 'next/font/google'
+import '../styles/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
