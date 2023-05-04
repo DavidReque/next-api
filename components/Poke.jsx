@@ -40,11 +40,17 @@ export default function Poke() {
                 className="w-full sm:w-1/2 md:w-1/3 xl:w-1/4 p-2"
                 key={photo.id}
               >
-                <img
+                {
+                  laod ? (
+                    <img
                   className="w-full h-64 object-cover hover:opacity-75"
                   src={photo.urls.small_s3}
                   alt={photo.alt_description}
                 />
+                  ) : (
+                    <Loading/>
+                  )
+                }
               </div>
             ))}
           </div>
